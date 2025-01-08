@@ -16,39 +16,29 @@ def main():
         choice = input("Enter your choice (1-4): ").strip()  
 
         if choice == '1':
-            
-            item = input("Enter the item you want to add: ").strip()
-            if item:
-                shopping_list.append(item) 
-                print(f"'{item}' has been added to your shopping list.")
-            else:
-                print("Item cannot be empty. Please try again.")
-
+            # Prompt for and add an item
+            item = input('Enter the item to add: ')
+            shopping_list.append(item)
         elif choice == '2':
-            
-            item = input("Enter the item you want to remove: ").strip()
+            # Prompt for and remove an item
+            item = input('Enter the item to remove: ')
             if item in shopping_list:
-                shopping_list.remove(item)  
-                print(f"'{item}' has been removed from your shopping list.")
+                shopping_list.remove(item)
             else:
-                print(f"'{item}' is not in your shopping list.")
-
+                print('This item is not in your shopping list.')
         elif choice == '3':
-            
-            print("\nYour Shopping List:")
-            if shopping_list:
-                for i, item in enumerate(shopping_list, 1):
-                    print(f"{i}. {item}")  
+            # Display the shopping list
+            print("\nCurrent Shopping List:")
+            if shopping_list:  # Check if the list is not empty
+                for idx, item in enumerate(shopping_list, start=1):
+                    print(f"{idx}. {item}")  # Print each item
             else:
-                print("Your shopping list is empty.")
-
+                print("The shopping list is empty.")  # Handle empty list case
         elif choice == '4':
-            
             print("Goodbye!")
             break
-
         else:
-            print("Invalid choice. Please enter a number between 1 and 4.")
+            print("Invalid choice. Please try again.")
 
 
 if __name__ == "__main__":
