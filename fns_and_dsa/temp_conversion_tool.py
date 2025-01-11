@@ -1,40 +1,31 @@
-FAHRENHEIT_TO_CELSIUS_FACTOR = 5/9
-CELSIUS_TO_FAHRENHEIT_FACTOR = 9/5
-FREEZING_POINT_CELSIUS = 32
+# Global conversion factors
+FAHRENHEIT_TO_CELSIUS_FACTOR = 5 / 9
+CELSIUS_TO_FAHRENHEIT_FACTOR = 9 / 5
 
+# Conversion functions
 def convert_to_celsius(fahrenheit):
-    """
-    Convert temperature from Fahrenheit to Celsius using the global conversion factor.
-    """
-    return (fahrenheit - FREEZING_POINT_CELSIUS) * FAHRENHEIT_TO_CELSIUS_FACTOR
+    return (fahrenheit - 32) * FAHRENHEIT_TO_CELSIUS_FACTOR
 
 def convert_to_fahrenheit(celsius):
-    """
-    Convert temperature from Celsius to Fahrenheit using the global conversion factor.
-    """
-    return (celsius * CELSIUS_TO_FAHRENHEIT_FACTOR) + FREEZING_POINT_CELSIUS
+    return celsius * CELSIUS_TO_FAHRENHEIT_FACTOR + 32
 
 def main():
-    """
-    Main function to handle user interaction and temperature conversion.
-    """
+    """Main function for user interaction."""
     try:
-        # Prompt user for input
-        temp = float(input("Enter the temperature to convert: "))
-        scale = input("Is this temperature in Celsius or Fahrenheit? (C/F): ").strip().upper()
+        # Prompt user for temperature input
+        temperature = float(input("Enter the temperature to convert: "))  # Check for numeric input
+        unit = input("Is this temperature in Celsius or Fahrenheit? (C/F): ").strip().upper()  # Normalize input
 
-        if scale == 'C':
-            # Convert Celsius to Fahrenheit
-            converted_temp = convert_to_fahrenheit(temp)
-            print(f"{temp}°C is equal to {converted_temp:.2f}°F")
-        elif scale == 'F':
-            # Convert Fahrenheit to Celsius
-            converted_temp = convert_to_celsius(temp)
-            print(f"{temp}°F is equal to {converted_temp:.2f}°C")
+        if unit == 'C':
+            converted_temp = convert_to_fahrenheit(temperature)  # Convert Celsius to Fahrenheit
+            print(f"{temperature}°C is {converted_temp}°F")  # Display result
+        elif unit == 'F':
+            converted_temp = convert_to_celsius(temperature)  # Convert Fahrenheit to Celsius
+            print(f"{temperature}°F is {converted_temp}°C")  # Display result
         else:
-            print("Invalid scale. Please enter 'C' for Celsius or 'F' for Fahrenheit.")
+            print("Invalid unit. Please enter 'C' for Celsius or 'F' for Fahrenheit.")  # Handle invalid unit input
     except ValueError:
-        print("Invalid temperature. Please enter a numeric value.")
+        print("Invalid temperature. Please enter a numeric value.")  # Handle non-numeric input
 
 if __name__ == "__main__":
-    main()
+    main()  # Execute the main function
