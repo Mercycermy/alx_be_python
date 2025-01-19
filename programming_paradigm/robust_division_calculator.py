@@ -1,15 +1,19 @@
 def safe_divide(numerator, denominator):
-    """Performs division and handles errors gracefully."""
+    """Performs division with error handling for division by zero and non-numeric inputs."""
     try:
-        # Convert inputs to floats and perform division
+        # Convert inputs to float for division
         numerator = float(numerator)
         denominator = float(denominator)
-
+        
+        # Check for division by zero
         if denominator == 0:
-            return "Error: Division by zero is not allowed."
-
+            return "Error: Cannot divide by zero."
+        
+        # Perform the division and return the result
         result = numerator / denominator
-        return f"The result of the division is {result:.2f}"
+        return f"The result of the division is {result}"
 
+    except ZeroDivisionError:
+        return "Error: Cannot divide by zero."
     except ValueError:
-        return "Error: Both numerator and denominator must be valid numbers."
+        return "Error: Please enter numeric values only."

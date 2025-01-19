@@ -1,36 +1,24 @@
 from library_management import Book, Library
 
-def setup_library():
-    """Initializes the library with some books."""
+def main():
+    # Setup a small library
     library = Library()
-    books = [
-        Book("Brave New World", "Aldous Huxley"),
-        Book("1984", "George Orwell"),
-    ]
-    for book in books:
-        library.add_book(book)
-    return library
+    library.add_book(Book("Brave New World", "Aldous Huxley"))
+    library.add_book(Book("1984", "George Orwell"))
 
-def display_books(library, message):
-    """Displays available books with a custom message."""
-    print(message)
+    # Initial list of available books
+    print("Available books after setup:")
+    library.list_available_books()
+# 
+    # Simulate checking out a book
+    library.check_out_book("1984")
+    print("\nAvailable books after checking out '1984':")
     library.list_available_books()
 
-def main():
-    # Setup library
-    library = setup_library()
-    display_books(library, "Available books after setup:")
-
-    # Check out a book
-    book_to_checkout = "1984"
-    print(f"\nChecking out '{book_to_checkout}'...")
-    library.check_out_book(book_to_checkout)
-    display_books(library, f"\nAvailable books after checking out '{book_to_checkout}':")
-
-    # Return a book
-    print(f"\nReturning '{book_to_checkout}'...")
-    library.return_book(book_to_checkout)
-    display_books(library, f"\nAvailable books after returning '{book_to_checkout}':")
+    # Simulate returning a book
+    library.return_book("1984")
+    print("\nAvailable books after returning '1984':")
+    library.list_available_books()
 
 if __name__ == "__main__":
     main()
